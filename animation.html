@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entry Animation Example</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Basic page style */
+      body {
+        background: linear-gradient(135deg, #2b5876, #4e4376);
+        color: white;
+        font-family: "Poppins", sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      /* Animation setup */
+      .animate {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeUp 1s ease-out forwards;
+      }
+
+      /* Delay for each element */
+      .animate:nth-child(1) {
+        animation-delay: 1s;
+      }
+      .animate:nth-child(2) {
+        animation-delay: 2s;
+      }
+      .animate:nth-child(3) {
+        animation-delay: 3s;
+      }
+
+      /* Keyframes */
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Button styling */
+      button {
+        background: #ff7f50;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 8px;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="animate">Welcome to My Website 👋</h1>
+      <p class="animate">I'm Agadesh, a passionate Full Stack Developer 🚀</p>
+      <button class="animate">Explore More</button>
+    </div>
+  </body>
+</html>
