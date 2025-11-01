@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple Table Example</title>
+    <style>
+      table {
+        width: 50%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: center;
+      }
+      caption {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      tfoot {
+        background-color: #f0f0f0;
+        font-weight: bold;
+      }
+      colgroup col:first-child {
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <caption>
+        Student Marks Table
+      </caption>
+      <colgroup>
+        <col />
+        <col />
+        <col />
+        <col />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Math</th>
+          <th>Science</th>
+          <th>English</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Agadesh</td>
+          <td>90</td>
+          <td>85</td>
+          <td>88</td>
+        </tr>
+        <tr>
+          <td>Priya</td>
+          <td>95</td>
+          <td>80</td>
+          <td>92</td>
+        </tr>
+        <tr>
+          <td>Arjun</td>
+          <td>88</td>
+          <td>89</td>
+          <td>84</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Average</td>
+          <td>91</td>
+          <td>84.6</td>
+          <td>88</td>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+</html>
