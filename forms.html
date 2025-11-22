@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms</title>
+    <style>
+      *{
+        margin:0;
+        padding:0;
+      }
+      body {
+        height: 100vh;
+        overflow-y: hidden;
+      }
+      input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+        margin-left: 20px;
+        border-radius: 20px;
+      }
+      label{
+        margin-left: 20px;
+        padding: 5px;
+      }
+      .forms {
+        display: grid;
+        width: 40%;
+        margin-left: 30%;
+        background-color: blueviolet;
+        padding: 20px;
+        margin-top: 10%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="forms">
+      <label for="name">Name : </label>
+      <input type="text" name="name" for="name" id="name" />
+      <label for="password">Password :</label>
+      <input type="text" name="password" for="password " id="password" />
+      <label for="email">Email :</label>
+      <input type="text" for="email" name="email" id="email" />
+    </div>
+  </body>
+</html>
