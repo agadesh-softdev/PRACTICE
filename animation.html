@@ -18,14 +18,12 @@
         flex-direction: column;
         text-align: center;
       }
-
       /* Animation setup */
       .animate {
         opacity: 0;
         transform: translateY(30px);
         animation: fadeUp 1s ease-out forwards;
       }
-
       /* Delay for each element */
       .animate:nth-child(1) {
         animation-delay: 1s;
@@ -36,7 +34,6 @@
       .animate:nth-child(3) {
         animation-delay: 3s;
       }
-
       /* Keyframes */
       @keyframes fadeUp {
         to {
@@ -44,7 +41,6 @@
           transform: translateY(0);
         }
       }
-
       /* Button styling */
       button {
         background: #ff7f50;
@@ -56,7 +52,6 @@
         cursor: pointer;
         transition: transform 0.3s;
       }
-
       button:hover {
         transform: scale(1.05);
       }
