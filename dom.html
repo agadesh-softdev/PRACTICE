@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="aga">Agadesh</div>
+    <script>
+      let doc = document.getElementById("aga");
+      doc.textContent = "Agadeshwaran R";
+      doc.style.color = "green";
+    </script>
+
+    <div class="agadesh">Agi</div>
+    <div class="agadesh">Agi</div>
+    <div class="agadesh">Agi</div>
+    <script>
+      let agi = document.getElementsByClassName("agadesh");
+      for (i = 0; i < agi.length; i++) {
+        agi[i].textContent = "Agadeshwaran " + (i + 1);
+      }
+    </script>
+
+    <script>
+      let one = document.createElement("h1");
+      one.textContent = "agadeshwaran R";
+      document.body.appendChild(one);
+    </script>
+
+    <h1>Byeee</h1>
+    <h2 id="hi">Byeee</h2>
+    <script>
+      let rem = document.getElementById("hi");
+      rem.remove();
+    </script>
+  </body>
+</html>
