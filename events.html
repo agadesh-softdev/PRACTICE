@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events</title>
+    <style>
+      button,
+      input {
+        margin-left: 45%;
+        margin-bottom: 20px;
+        width: 155px;
+      }
+      body,
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      hr {
+        width: 100%;
+      }
+      input {
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--ONCLICK-->
+    <h2>Onclick</h2>
+    <button onclick="alert('Buton Clicked')">CLICK</button>
+    <hr />
+
+    <!--ONMOUSEOVER-->
+    <h2>Onmouseover</h2>
+    <button onmouseover="alert('Button Clicked')">HOVER</button>
+    <hr />
+
+    <!--ONKEYDOWN-->
+    <h2>Onkeydown</h2>
+    <input
+      type="text"
+      onkeydown="console.log('Key down');
+    "
+    />
+    <hr />
+
+    <!--ONSUBMIT-->
+    <h2>Onsubmit</h2>
+    <form onsubmit="alert('Form Submitted')">
+      <input type="text" />
+      <button type="submit">CLICK</button>
+    </form>
+    <hr />
+
+    <!--EVENT LISTENER CLICK-->
+    <h2>Event listener Click</h2>
+    <button id="click">Click</button>
+    <script>
+      let aga = document.querySelector("#click");
+      aga.addEventListener("click", () => {
+        alert("Button Clicked");
+      });
+    </script>
+    <hr />
+
+    <!--EVENT LISTENER MOUSEOVER-->
+    <h2>Event listener mouseover</h2>
+    <button id="hover">Hover</button>
+    <script>
+      let agadesh = document.querySelector("#hover");
+      agadesh.addEventListener("mouseover", () => {
+        alert("Button Clicked");
+      });
+    </script>
+    <hr />
+
+    <!--EVENT LISTENER KEYDOWN-->
+    <h2>Event listener keydown</h2>
+    <input type="text" id="keydown" />
+    <script>
+      let jan = document.querySelector("#keydown");
+      jan.addEventListener("keydown", () => {
+        console.log("Key down");
+      });
+    </script>
+    <hr />
+
+    <!--EVENT LISTENER SUBMIT-->
+    <h2>Event listener submit</h2>
+    <form id="submit">
+      <input type="text" />
+      <button type="submit">CLICK</button>
+    </form>
+    <script>
+      let feb = document.querySelector("#submit");
+      feb.addEventListener("submit", (event) => {
+        event.preventDefault();
+        alert("Button Clicked");
+      });
+    </script>
+  </body>
+</html>
