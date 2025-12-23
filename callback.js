@@ -32,3 +32,16 @@
   }
   agadesh(show);
 }
+
+{
+  let one = 1;
+  let two = 2;
+  function agadesh(callback) {
+    let res = one + two;
+    callback(res);
+  }
+  function agi(res) {
+    console.log("This is the result", res);
+  }
+  agadesh(agi);
+}
