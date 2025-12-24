@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API IMAGE GENERATOR</title>
+    <style>
+      body {
+        background-color: antiquewhite;
+      }
+      button {
+        width: 100px;
+        background-color: goldenrod;
+        color: white;
+        margin-left: 45%;
+        height: 50px;
+        border-radius: 30px;
+      }
+      button:hover {
+        opacity: 0.8;
+      }
+      button:active {
+        scale: 0.8;
+      }
+      img {
+        margin-top: 50px;
+        width: 300px;
+        height: 300px;
+        margin-left: 39%;
+        border-radius: 50%;
+      }
+      .hello {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hello">
+      <button id="button">Genrate</button>
+      <img src="" alt="image" id="pho" />
+    </div>
+    <script>
+      const button = document.getElementById("button");
+      button.addEventListener("click", () => {
+        fetch("https://dog.ceo/api/breeds/image/random")
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              return new Error("Unable to fetch the data");
+            }
+          })
+          .then((res) => {
+            document.getElementById("pho").src = res.message;
+          })
+          .catch((error) => {
+            console.log("unable to load image");
+          });
+      });
+    </script>
+  </body>
+</html>
