@@ -137,31 +137,30 @@
     </div>
     <script>
       let tasks = [];
-      let taskForm = document.getElementById("taskForm");
-      let addBtn = taskForm.querySelector("#addBtn");
-      let taskTableBody = document.getElementById("taskTableBody");
-      let noTask = document.getElementById("noTask");
+      const taskTableBody = document.getElementById("taskTableBody");
+      const taskForm = document.getElementById("taskForm");
+      const noTask = document.getElementById("noTask");
+      const submitButton = taskForm.querySelector("button");
       let isEditing = false;
       let currentTaskId = null;
-      let serverUrl = "https://68ad07cdb996fea1c08b65ec.mockapi.io/crud";
+      const serverUrl = "https://68ad07cdb996fea1c08b65ec.mockapi.io/crud";
 
-      function fetchTask() {
+      function fetchTasks() {
         fetch(serverUrl)
           .then((res) => {
-            if (res.ok) {
+            if (res) {
               return res.json();
             }
-            throw new Error("Error in fetching data");
           })
           .then((data) => {
             tasks = data;
             renderTasks();
+            alert("Tasks loaded successfully.");
           })
           .catch((error) => {
-            console.log("Error in fetching data", error);
+            console.log("Failed to fetch data", error);
           });
       }
-
       function renderTasks() {
         if (tasks.length === 0) {
           noTask.style.display = "block";
@@ -169,53 +168,65 @@
         } else {
           noTask.style.display = "none";
           taskTableBody.innerHTML = tasks
-            .map(
-              (task) => `    
-      <tr>
-        <td>${task.id}</td>
-        <td>${task.name}</td>
-        <td>${task.email}</td>
-        <td>${task.phone}</td>
-        <td>
-          <div class="action-buttons">
-            <button class="task-button" onclick="editTask('${task.id}')">Edit</button>
-            <button class="delete-button two" onclick="deleteTask('${task.id}')">Delete</button>
-          </div>
-        </td>
-      </tr>`
-            )
+            .map((task) => {
+              return `
+              
+          <tr>
+            <td>${task.id}</td>
+            <td>${task.name}</td>
+            <td>${task.email}</td>
+            <td>${task.phone}</td>
+            <td>
+              <div class="action-buttons">
+                <button class="task-button" onclick="editTask('${task.id}')">Edit</button>
+                <button class="delete-button two" onclick="deleteTask('${task.id}')">Delete</button>
+              </div>
+            </td>
+          </tr>
+        `;
+            })
             .join("");
         }
       }
 
       taskForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        let name = document.getElementById("name").value;
-        let phone = document.getElementById("phone").value;
-        let email = document.getElementById("email").value;
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        const email = document.getElementById("email").value;
 
+        //EDIT
         if (isEditing) {
           fetch(`${serverUrl}/${currentTaskId}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ name, email, phone }),
           })
-            .then((res) => res.json())
-            .then((data) => {
-              tasks = tasks.map((task) => (task.id === data.id ? data : task));
+            .then((res) => {
+              return res.json();
+            })
+            .then((updatedTask) => {
+              tasks = tasks.map((task) =>
+                task.id === updatedTask.id ? updatedTask : task
+              );
+              alert("Task updated successfully");
               renderTasks();
               resetForm();
             })
             .catch((error) => {
-              console.log("error in editing data", error);
+              console.log("Failed to edit Task", error);
             });
-        } else {
+        }
+        //ADD
+        else {
           fetch(serverUrl, {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ name, email, phone }),
           })
-            .then((res) => res.json())
+            .then((res) => {
+              return res.json();
+            })
             .then((newTask) => {
               tasks.push(newTask);
               alert("Task added successfully");
@@ -229,13 +240,14 @@
       });
 
       function editTask(id) {
-        let data = tasks.find((task) => task.id == id);
-        currentTaskId = id;
+        let data = tasks.find((t) => t.id === id);
+        if (!data) return;
         document.getElementById("name").value = data.name;
         document.getElementById("email").value = data.email;
         document.getElementById("phone").value = data.phone;
         isEditing = true;
-        addBtn.textContent = "Edit Task";
+        currentTaskId = id;
+        submitButton.textContent = "Edit Task";
       }
 
       function deleteTask(id) {
@@ -245,6 +257,7 @@
           .then((res) => {
             if (res.ok) {
               tasks = tasks.filter((task) => task.id !== id);
+              alert("Task deleted successfully.");
               renderTasks();
               resetForm();
             }
@@ -256,11 +269,12 @@
 
       function resetForm() {
         isEditing = false;
+        currentTaskId = null;
         taskForm.reset();
-        addBtn.textContent = "Add Task";
+        submitButton.textContent = "Add Task";
       }
 
-      fetchTask();
+      fetchTasks();
     </script>
   </body>
 </html>
